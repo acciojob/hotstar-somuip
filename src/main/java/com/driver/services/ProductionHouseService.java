@@ -17,15 +17,16 @@ public class ProductionHouseService {
 
     public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto){
 
-        ProductionHouse productionHouse = new ProductionHouse();
-        productionHouse.setName(productionHouseEntryDto.getName());
-        productionHouse.setRatings(0.0);
-        productionHouse.setWebSeriesList(new ArrayList<>());
 
         // save production house
-        ProductionHouse savedProductionHouse = productionHouseRepository.save(productionHouse);
 
-        return savedProductionHouse.getId();
+        ProductionHouse productionHouse = new ProductionHouse(productionHouseEntryDto.getName());
+
+        productionHouse.setRatings(0.0);
+
+        ProductionHouse addedProductionHouse = productionHouseRepository.save(productionHouse);
+
+        return addedProductionHouse.getId();
     }
 
 }
